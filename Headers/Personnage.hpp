@@ -1,7 +1,9 @@
 #if !defined(PERSONNAGE)
 #define PERSONNAGE
 
+#include <iostream>
 #include <string>
+#include "../Headers/Arme.hpp"
  
 class Personnage {
   public:
@@ -11,7 +13,7 @@ class Personnage {
     Personnage(Personnage const& autre);
     ~Personnage();
     void recevoirDegats(int nbDegats);
-    void attaquer(Personnage *cible);
+    void attaquer(Personnage &cible);
     void boirePotionDeVie(int quantitePotion);
     void changerArme(std::string nomNouvelleArme, int degatsNouvelleArme);
     bool estVivant() const;
@@ -19,8 +21,7 @@ class Personnage {
   private:
     int m_vie;
     int m_mana;
-    std::string m_nomArme;
-    int m_degatsArme;
+    Arme m_arme;
 };
 
 #endif // PERSONNAGE

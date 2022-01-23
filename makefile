@@ -1,7 +1,10 @@
 all: project clear
 
-project: personnage.o main.o
-	g++ personnage.o main.o -o ./project
+project: arme.o personnage.o main.o
+	g++ arme.o personnage.o main.o -o ./project
+
+arme.o: ./Sources/Arme.cpp
+	g++ -c ./Sources/Arme.cpp -o arme.o
 
 personnage.o: ./Sources/Personnage.cpp
 	g++ -c ./Sources/Personnage.cpp -o personnage.o

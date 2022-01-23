@@ -1,20 +1,18 @@
 #include "../Headers/Personnage.hpp"
-#include "../Headers/Header.hpp"
+#include "../Headers/Arme.hpp"
 
-Personnage::Personnage() : m_vie(100), m_mana(100), m_nomArme("Epée rouillée"), m_degatsArme(10) {
-}
+using namespace std;
 
-Personnage::Personnage(string nomArme, int degatsArme) : m_vie(100), m_mana(100), m_nomArme(nomArme), m_degatsArme(degatsArme) {
-}
+Personnage::Personnage() : m_vie(100), m_mana(100) {}
 
-Personnage::Personnage(int vie, int mana, string nomArme, int degatsArme) : m_vie(vie), m_mana(mana), m_nomArme(nomArme), m_degatsArme(degatsArme) {
-}
+Personnage::Personnage(string nomArme, int degatsArme) : m_vie(100), m_mana(100), m_arme(nomArme, degatsArme) {}
 
-Personnage::Personnage(Personnage const& autre) : m_vie(autre.m_vie), m_mana(autre.m_mana), m_nomArme(autre.m_nomArme), m_degatsArme(autre.m_degatsArme) {
-}
+Personnage::Personnage(int vie, int mana, string nomArme, int degatsArme) : m_vie(vie), m_mana(mana), m_arme(nomArme, degatsArme) {}
+
+Personnage::Personnage(Personnage const& autre) : m_vie(autre.m_vie), m_mana(autre.m_mana), m_arme(autre.m_arme) {}
 
 Personnage::~Personnage() {
-
+  // destructeur
 }
 
 void Personnage::recevoirDegats(int nbDegats) {
@@ -24,8 +22,8 @@ void Personnage::recevoirDegats(int nbDegats) {
   }
 }
 
-void Personnage::attaquer(Personnage *cible) {
-  cible->recevoirDegats(m_degatsArme);
+void Personnage::attaquer(Personnage &cible) {
+  cible.recevoirDegats(m_arme.getDegats());
 }
 
 void Personnage::boirePotionDeVie(int quantiterPotion) {
@@ -33,8 +31,7 @@ void Personnage::boirePotionDeVie(int quantiterPotion) {
 }
 
 void Personnage::changerArme(string nomNouvelleArme, int degatsNouvelleArme) {
-  m_nomArme = nomNouvelleArme;
-  m_degatsArme = degatsNouvelleArme;
+  m_arme.changer(nomNouvelleArme, degatsNouvelleArme);
 }
 
 bool Personnage::estVivant() const {
