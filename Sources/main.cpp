@@ -2,15 +2,12 @@
 #include "../Headers/Personnage.hpp"
 
 int main() {
-  Personnage david, goliath("Epée aiguisée", 20), hercule(20, 150, "Epée enchantée", 3);
+  Personnage goliath("Epée aiguisée", 20), hercule(20, 150, "Epée enchantée", 3);
+  Personnage david(goliath);
 
-  goliath.attaquer(&hercule);
+  david.attaquer(&hercule);
 
-  if(hercule.estVivant()) {
-    cout << "Hercule est vivant !";
-  } else {
-    cout << "Hercule est mort !";
-  }
+  cout << "Hercule est " << (hercule.estVivant() ? "vivant" : "mort") << " !";
 
   return 0;
 }

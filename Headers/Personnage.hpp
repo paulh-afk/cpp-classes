@@ -8,11 +8,13 @@ class Personnage {
     Personnage();
     Personnage(std::string nomArme, int degatsArme);
     Personnage(int vie, int mana, std::string nomArme, int degatsArme);
+    Personnage(Personnage const& autre);
+    ~Personnage();
     void recevoirDegats(int nbDegats);
     void attaquer(Personnage *cible);
     void boirePotionDeVie(int quantitePotion);
     void changerArme(std::string nomNouvelleArme, int degatsNouvelleArme);
-    bool estVivant();
+    bool estVivant() const;
     
   private:
     int m_vie;

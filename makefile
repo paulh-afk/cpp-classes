@@ -12,4 +12,5 @@ main.o: ./Sources/main.cpp
 clear:
 	rm *.o
 	clear
+	./project
 
